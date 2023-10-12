@@ -149,8 +149,9 @@ class StateMachine:
         self.cur_state = Idle
         self.table = {
             Sleep: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle},
-            Idle: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, time_out: Sleep},
-            Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle}
+            Idle: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, time_out: Sleep, auto_run: AutoRun},
+            Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle},
+            AutoRun: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, time_out: Idle}
         }
 
     def start(self):
