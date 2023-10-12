@@ -29,20 +29,36 @@ def auto_run(e):
 
 class AutoRun:
     @staticmethod
-    def enter():
+    def enter(boy, e):
+        if boy.action == 2:
+            boy.action = 0
+            boy.dir = -1
+        elif boy.action == 3:
+            boy.action = 1
+            boy.dir = 1
+        boy.start_time = get_time()
+
+    @staticmethod
+    def exit(boy, e):
         pass
 
     @staticmethod
-    def exit():
-        pass
+    def do(boy):
+        if get_time() - boy.start_time > 4:
+            boy.state_machine.handle_event(('TIME_OUT', 0))
+        boy.frame = (boy.frame + 1) % 8
+        boy.x += boy.dir * 10
+
+        if boy.x > 800:
+            boy.dir *= -1
+            boy.action = 0
+        elif boy.x < 0:
+            boy.dir *= -1
+            boy.action = 1
 
     @staticmethod
-    def do():
-        pass
-
-    @staticmethod
-    def draw():
-        pass
+    def draw(boy):
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y + 35, 200, 200)
 
 
 class Run:
@@ -116,7 +132,7 @@ class Idle:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
-        if get_time() - boy.start_time > 3.0:
+        if get_time() - boy.start_time > 2.0:
             boy.state_machine.handle_event(('TIME_OUT', 0))
         print('Idle Do')
 
