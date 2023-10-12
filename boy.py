@@ -26,6 +26,25 @@ def left_up(e):
 def auto_run(e):
     return e[0] == 'INPUT' and e[1].type == SDL_KEYUP and e[1].key == SDLK_a
 
+
+class AutoRun:
+    @staticmethod
+    def enter():
+        pass
+
+    @staticmethod
+    def exit():
+        pass
+
+    @staticmethod
+    def do():
+        pass
+
+    @staticmethod
+    def draw():
+        pass
+
+
 class Run:
     @staticmethod
     def enter(boy, e):
