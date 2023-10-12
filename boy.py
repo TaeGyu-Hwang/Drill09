@@ -49,10 +49,10 @@ class AutoRun:
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * 10
 
-        if boy.x > 800:
+        if boy.x > 750:
             boy.dir *= -1
             boy.action = 0
-        elif boy.x < 0:
+        elif boy.x < 50:
             boy.dir *= -1
             boy.action = 1
 
